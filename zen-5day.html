@@ -1,0 +1,901 @@
+<title>5日間ステップ配信 全原稿（登録直後〜Day5）</title>
+<style>
+  :root{
+    --ground:#FAF6EC; --panel:#FFFFFF; --panel-edge:#E9DCC6;
+    --ink:#46331E; --body:#574326; --muted:#8A7357;
+    --accent:#D9831F; --accent-soft:#F4C978;
+    --line-chip:#2E8B57; --line-panel:#F3F9F1; --line-edge:#CFE3CC;
+    --mail-chip:#5E7FA6; --mail-panel:#F4F7FB; --mail-edge:#D3DEEC;
+    --ok:#4C8B4A; --ok-bg:#EAF3E7;
+    --wait:#B9791C; --wait-bg:#FBEFD8;
+    --gift:#A6653F; --gift-bg:#F7E7DC;
+    --chip-text:#FFFFFF;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#201812; --panel:#2B2119; --panel-edge:#453626;
+      --ink:#F3E8D6; --body:#DCCBB2; --muted:#A78E6F;
+      --accent:#EFA23E; --accent-soft:#7A5A2B;
+      --line-chip:#7FC98B; --line-panel:#232B21; --line-edge:#3B4A38;
+      --mail-chip:#9DBCE3; --mail-panel:#212932; --mail-edge:#37455A;
+      --ok:#8FC98B; --ok-bg:#2A3826;
+      --wait:#E8B45C; --wait-bg:#3D301F;
+      --gift:#DB9A6E; --gift-bg:#3E2C20;
+      --chip-text:#1D1710;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#201812; --panel:#2B2119; --panel-edge:#453626;
+    --ink:#F3E8D6; --body:#DCCBB2; --muted:#A78E6F;
+    --accent:#EFA23E; --accent-soft:#7A5A2B;
+    --line-chip:#7FC98B; --line-panel:#232B21; --line-edge:#3B4A38;
+    --mail-chip:#9DBCE3; --mail-panel:#212932; --mail-edge:#37455A;
+    --ok:#8FC98B; --ok-bg:#2A3826;
+    --wait:#E8B45C; --wait-bg:#3D301F;
+    --gift:#DB9A6E; --gift-bg:#3E2C20;
+    --chip-text:#1D1710;
+  }
+  :root[data-theme="light"]{
+    --ground:#FAF6EC; --panel:#FFFFFF; --panel-edge:#E9DCC6;
+    --ink:#46331E; --body:#574326; --muted:#8A7357;
+    --accent:#D9831F; --accent-soft:#F4C978;
+    --line-chip:#2E8B57; --line-panel:#F3F9F1; --line-edge:#CFE3CC;
+    --mail-chip:#5E7FA6; --mail-panel:#F4F7FB; --mail-edge:#D3DEEC;
+    --ok:#4C8B4A; --ok-bg:#EAF3E7;
+    --wait:#B9791C; --wait-bg:#FBEFD8;
+    --gift:#A6653F; --gift-bg:#F7E7DC;
+    --chip-text:#FFFFFF;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  body{
+    background:var(--ground); color:var(--body);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+    line-height:1.85; margin:0; font-size:15px;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:40px 20px 96px;}
+
+  h1,h2{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif; color:var(--ink); text-wrap:balance; margin:0;}
+  h1{font-size:29px; line-height:1.42; letter-spacing:.02em;}
+  h2{font-size:22px; line-height:1.5;}
+
+  .eyebrow{font-size:12px; letter-spacing:.18em; color:var(--accent); font-weight:600; text-transform:uppercase; margin-bottom:10px;}
+  .lede{color:var(--muted); margin-top:12px; max-width:44em;}
+  .lede strong{color:var(--body); font-weight:600;}
+  .notice{margin-top:20px; padding:14px 18px; background:var(--panel); border:1px solid var(--panel-edge); border-radius:6px; font-size:13.5px; color:var(--muted);}
+  .notice b{color:var(--ink);}
+
+  .toc-block{margin-top:36px;}
+  .table-scroller{overflow-x:auto; border:1px solid var(--panel-edge); border-radius:8px; background:var(--panel);}
+  table{border-collapse:collapse; width:100%; min-width:660px; font-size:13.5px;}
+  th,td{text-align:left; padding:10px 14px; border-top:1px solid var(--panel-edge); vertical-align:top;}
+  thead th{border-top:none; font-size:11.5px; letter-spacing:.12em; color:var(--muted); font-weight:600; background:color-mix(in srgb,var(--panel) 60%,var(--ground)); white-space:nowrap;}
+  td.num{font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--ink); font-weight:600;}
+  td a{color:var(--ink); text-decoration:none; border-bottom:1px dashed var(--accent); font-weight:600;}
+  td a:hover,td a:focus-visible{color:var(--accent);}
+
+  .pill{display:inline-block; padding:1px 10px; border-radius:999px; font-size:11.5px; font-weight:600; white-space:nowrap; letter-spacing:.04em;}
+  .pill.ok{color:var(--ok); background:var(--ok-bg);}
+  .pill.wait{color:var(--wait); background:var(--wait-bg);}
+  .pill.gift{color:var(--gift); background:var(--gift-bg);}
+
+  section.msg{margin-top:72px;}
+  .sec-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 14px; border-bottom:2px solid var(--accent-soft); padding-bottom:12px;}
+  .sec-when{font-variant-numeric:tabular-nums; font-size:12.5px; font-weight:600; letter-spacing:.1em; color:var(--accent); white-space:nowrap;}
+  .sec-head .pill{margin-left:auto;}
+  .backtop{font-size:12px; color:var(--muted); text-decoration:none; white-space:nowrap;}
+  .backtop:hover,.backtop:focus-visible{color:var(--accent);}
+
+  .meta{margin-top:16px; display:grid; gap:6px 0; font-size:13.5px; background:var(--panel); border:1px solid var(--panel-edge); border-radius:6px; padding:12px 16px;}
+  .meta div{display:flex; gap:10px;}
+  .meta .k{flex:0 0 5.5em; color:var(--muted); font-size:12px; letter-spacing:.06em; padding-top:2px;}
+  .meta .v{flex:1; color:var(--body);}
+  .meta .v em{font-style:normal; color:var(--gift); font-weight:600;}
+
+  .flag{margin-top:16px; background:var(--wait-bg); border:1px solid color-mix(in srgb,var(--wait) 40%,var(--panel-edge)); border-left:4px solid var(--wait); border-radius:6px; padding:12px 16px; font-size:13px; color:var(--body);}
+  .flag b{color:var(--ink);}
+
+  .versions{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin-top:20px; align-items:start;}
+  .version{border-radius:10px; border:1px solid; overflow:hidden;}
+  .version.line{background:var(--line-panel); border-color:var(--line-edge);}
+  .version.mail{background:var(--mail-panel); border-color:var(--mail-edge);}
+  .v-head{display:flex; align-items:center; gap:8px; padding:10px 16px 0;}
+  .v-chip{font-size:11px; font-weight:700; letter-spacing:.14em; padding:2px 10px; border-radius:4px; color:var(--chip-text);}
+  .version.line .v-chip{background:var(--line-chip);}
+  .version.mail .v-chip{background:var(--mail-chip);}
+  .v-note{font-size:11.5px; color:var(--muted);}
+  .v-body{white-space:pre-line; padding:14px 20px 22px; color:var(--body); font-size:14px; line-height:2.0; max-width:34em;}
+
+  footer{margin-top:60px; font-size:12.5px; color:var(--muted); text-align:center; line-height:1.7;}
+  a:focus-visible,.backtop:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px;}
+</style>
+
+<div class="wrap" id="top">
+  <header>
+    <div class="eyebrow">Bread &amp; Table ── 中種法ローンチ</div>
+    <h1>5日間ステップ配信の全原稿（登録直後〜Day5）</h1>
+    <p class="lede">LINE登録の直後から7通（登録直後〜Day5＋翌日Day6フォロー）、実際に届く順に並べています。各通とも <strong>LINE版</strong>（短い凝縮版）と <strong>メール版</strong>（全文）のセットです。「〇〇さん」は名前差し込みの箇所。全原稿は<strong>確定済み・変更禁止</strong>（直す場合は必ずむぎさん確認）です。</p>
+    <div class="notice">
+      配信時刻：登録直後は<b>即時</b>、Day1〜Day5は<b>夜21:10</b>（LINE・メール同時刻。2026-07-19変更）。正のファイル＝<b>2026-07-06_UTAGE構築指示書_5日間配信.md</b>。<br>
+      <b>2026-07-19の改訂：</b>①配信時刻を夜21:10に変更 ②Day1の「腕のせいじゃなかった」を「まだ慣れていないから、と思っていませんか？」の言い換えに ③Day4を「お店の製法のひとつ・お家でも使いやすい＋そこからいろんなパンに派生」の方向へ改訂。
+    </div>
+  </header>
+
+  <nav style="margin-top:22px; display:flex; flex-wrap:wrap; gap:8px 18px; font-size:13px; padding:12px 16px; background:var(--panel); border:1px solid var(--panel-edge); border-radius:8px;">
+    <span style="color:var(--muted);">関連ページ：</span>
+    <a href="index.html" target="_blank" rel="noopener" style="color:var(--ink); text-decoration:none; border-bottom:1px dashed var(--accent); font-weight:600;">📋 ブリーフィング（全体像・チェックリスト）</a>
+    <a href="zen-bosyu.html" target="_blank" rel="noopener" style="color:var(--ink); text-decoration:none; border-bottom:1px dashed var(--accent); font-weight:600;">📣 姉妹ページ：募集配信 全12通 全原稿</a>
+  </nav>
+
+  <div class="toc-block">
+    <div class="table-scroller">
+      <table>
+        <thead>
+          <tr><th>配信</th><th>タイミング</th><th>テーマ</th><th>配布物</th><th>状態</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num"><a href="#d0">登録直後</a></td><td class="num">即時</td><td>あいさつ＋プレゼント2つ</td><td>①困った全部解決BOOK ②神レシピ10選</td><td><span class="pill ok">✅ 確定</span></td></tr>
+          <tr><td class="num"><a href="#d1">Day1</a></td><td class="num">翌日 21:10</td><td>中種法の紹介</td><td>中種法まるわかりガイド（13枚）</td><td><span class="pill ok">✅ 確定</span></td></tr>
+          <tr><td class="num"><a href="#d2">Day2</a></td><td class="num">21:10</td><td>OKサインの見極め</td><td>OKサイン早見表</td><td><span class="pill ok">✅ 確定</span></td></tr>
+          <tr><td class="num"><a href="#d3">Day3</a></td><td class="num">21:10</td><td>失敗とリカバリー</td><td>なし</td><td><span class="pill ok">✅ 確定</span></td></tr>
+          <tr><td class="num"><a href="#d4">Day4</a></td><td class="num">21:10</td><td>応用の広がり</td><td>なし</td><td><span class="pill ok">✅ 改訂済み</span></td></tr>
+          <tr><td class="num"><a href="#d5">Day5</a></td><td class="num">21:10</td><td>体験レシピへ招待</td><td>体験レシピ＋動画</td><td><span class="pill ok">✅ 確定</span></td></tr>
+          <tr><td class="num"><a href="#d6">Day6</a></td><td class="num">翌日 21:10</td><td>ふり返り＋B&amp;T紹介（匂わせ）</td><td>なし</td><td><span class="pill ok">✅ 確定</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ 登録直後 ============ -->
+  <section class="msg" id="d0">
+    <div class="sec-head">
+      <span class="sec-when">登録直後（即時）</span>
+      <h2>登録直後：あいさつ＋プレゼント2つ</h2>
+      <span class="pill ok">✅ 確定</span>
+      <a class="backtop" href="#top">↑ 一覧へ</a>
+    </div>
+    <div class="meta">
+      <div><span class="k">カード</span><span class="v">①「パン作りの『困った』全部解決BOOK」（サブ：ふだんは会員さん限定の"教科書"から）／ボタン「BOOKを受け取る🎁」　②「4,200人に教えてきた、むぎの神レシピ10選」／ボタン「10選を受け取る🍞」</span></div>
+      <div><span class="k">メール件名</span><span class="v">〇〇さん、はじめまして。登録のお礼にプレゼントを2つ🎁</span></div>
+      <div><span class="k">配布・タグ</span><span class="v"><em>BOOK受取 → 登録時_QA_受取／10選受取 → 登録時_10選_受取（10選のリンク＝https://pannotoriko.com/no-knead-bread-10/）</em></span></div>
+    </div>
+    <div class="versions">
+      <div class="version line">
+        <div class="v-head"><span class="v-chip">LINE版</span></div>
+        <div class="v-body">〇〇さん、はじめまして！
+パン職人のむぎです🍞
+
+登録してくださって、本当にありがとうございます☺️
+
+私はパン屋で6年働いたあと、今はオンラインでパン作りをお伝えしていて、これまで4,200名を超える方と一緒にパンを焼いてきました。
+
+このLINEでは、〇〇さんのお家のパンが「パン屋さんのクオリティ」に近づくお話をお届けしていきます🌾
+
+○●————————————●○
+
+さっそく、登録のお礼にプレゼントを2つご用意しました🎁
+
+①パン作りの「困った」全部解決BOOK
+ふだんは月額会員さん限定の"パン作りの教科書"から、『困った』の答えを1冊にまとめたものです。
+
+②むぎの神レシピ10選
+今日からすぐ焼ける、私のイチオシ集🍞
+
+このあと届く2つのメッセージの「受け取る」ボタンからどうぞ👇
+
+○●————————————●○
+
+明日からは5日間、〇〇さんのパン作りが変わるお話をお届けします。
+
+初日は…「同じレシピなのに、焼き上がりが毎回ちがう」あのナゾについて。
+
+お楽しみに！
+むぎでした🌾</div>
+      </div>
+      <div class="version mail">
+        <div class="v-head"><span class="v-chip">メール版</span><span class="v-note">全文</span></div>
+        <div class="v-body">〇〇さん、はじめまして！
+パン職人のむぎです🍞
+
+数あるアカウントの中から登録してくださって、本当にありがとうございます☺️
+
+私は、パン屋で6年働いたあと、今はオンラインでパン作りをお伝えしていて、これまで4,200名を超える方と一緒にパンを焼いてきました。
+
+このLINEでは、〇〇さんのお家のパンが「パン屋さんのクオリティ」に近づくお話を、これから少しずつお届けしていきます🌾
+
+○●————————————●○
+
+さっそくですが、登録のお礼に
+プレゼントを2つご用意しました🎁
+
+①パン作りの「困った」全部解決BOOK
+実はこれ、ふだんは月額会員さんだけにお渡ししている"パン作りの教科書"の中の1冊です。
+「膨らまない」「べたつく」…そんな『困った』の答えを、ぎゅっとまとめました。
+
+②むぎの神レシピ10選
+今日からすぐ焼ける、私のイチオシを集めています🍞
+
+▼「困った」全部解決BOOKを受け取る【リンク】
+▼神レシピ10選を受け取る【リンク】
+
+○●————————————●○
+
+そして明日から5日間、〇〇さんのパン作りが変わる、とっておきのお話をお届けします。
+
+初日のテーマは…
+「同じレシピなのに、焼き上がりが毎回ちがう」あのナゾについて。
+
+どうぞ、お楽しみに！
+むぎでした🌾</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Day1 ============ -->
+  <section class="msg" id="d1">
+    <div class="sec-head">
+      <span class="sec-when">Day1（翌日 21:10）</span>
+      <h2>Day1：中種法の紹介</h2>
+      <span class="pill ok">✅ 確定</span>
+      <a class="backtop" href="#top">↑ 一覧へ</a>
+    </div>
+    <div class="meta">
+      <div><span class="k">カード</span><span class="v">焼き上がりが毎回ちがうのは、あなたのせいじゃない。（サブ：中種法 入門 Day1）</span></div>
+      <div><span class="k">メール件名</span><span class="v">〇〇さん、焼き上がりが毎回ちがうのは…</span></div>
+      <div><span class="k">配布・タグ</span><span class="v"><em>「中種」送信でガイドPDF自動送付 → タグ Day1_中種_受取</em></span></div>
+    </div>
+    <div class="versions">
+      <div class="version line">
+        <div class="v-head"><span class="v-chip">LINE版</span></div>
+        <div class="v-body">〇〇さん、こんにちは！パン職人のむぎです🍞
+
+昨日のプレゼント2つは受け取っていただけましたか？☺️
+（まだの方は昨日の「受け取る」ボタンからどうぞ🎁）
+
+○●————————————●○
+
+私がパン屋で働いていた頃、ずっと不思議だったことがあります。
+「どうしてお店のパンは、次の日もふわふわなんだろう？」って。
+
+〇〇さんも、こんな経験ありませんか？
+
+✅同じレシピなのに、上手に焼ける日と焼けない日がある
+✅焼きたては美味しいのに、次の日はパサパサ…😢
+
+これって、「まだパン作りに慣れていないからかな…」と思っていませんか？
+
+＼でも、そうじゃないんです／
+
+焼き上がりが毎回ちがうのには、ちゃんと理由がありました。
+それが、パン屋さんでもよく使われている「中種法（なかだねほう）」という作り方です✨
+
+やることは「先に、種をひとつ作っておく」それだけ。
+
+○●————————————●○
+
+今日は、この中種法がまるごと分かる【中種法まるわかりガイド】をプレゼントします🎁
+正直、有料の教材として売ってもいいくらいの内容を、スマホでサクサク読める13枚にまとめました。
+それを、登録のお礼にお贈りします☺️
+
+このLINEに「中種」と送ってみてください🕊️
+すぐにお届けします！
+
+まずは、ながめるだけで花マルです💮
+
+そして5日目には、実際に焼ける【体験レシピ】もプレゼント予定です🍞
+
+○●————————————●○
+
+明日は、一番不安な「これで合ってるの…？」をなくすお話です。
+
+それでは、また明日！
+むぎでした🌾</div>
+      </div>
+      <div class="version mail">
+        <div class="v-head"><span class="v-chip">メール版</span><span class="v-note">全文</span></div>
+        <div class="v-body">〇〇さん、こんにちは！パン職人のむぎです🍞
+
+昨日のプレゼント2つは、受け取っていただけましたか？☺️
+（まだの方は、昨日のメールのリンクからいつでもどうぞ🎁）
+
+さて、今日から5日間、〇〇さんのパン作りが変わるお話を、少しずつお届けしていきます。
+
+○●————————————●○
+
+私がパン屋で働いていた頃、ずっと不思議だったことがあります。
+「どうしてお店のパンは、次の日もふわふわなんだろう？」って。
+
+〇〇さんは、こんな経験ありませんか？
+
+✅同じレシピで、同じように作っているのに、上手に焼ける日と焼けない日がある
+✅焼きたてはすごく美味しかったのに、次の日に食べたらパサパサだった…😢
+
+これ、実は私も昔、まったく同じことで悩んでいました。
+「まだパン作りに慣れていないからかな」って、何度も思いました。
+
+でもね、〇〇さん。
+
+＼そうじゃなかったんです／
+
+パン屋さんのパンが、次の日もしっとり美味しいのには、ちゃんと理由がありました。
+それが、パン屋さんでもよく使われている「中種法（なかだねほう）」という作り方です✨
+
+むずかしそうに聞こえますか？
+大丈夫です。やることは「先に、種をひとつ作っておく」それだけ。
+
+○●————————————●○
+
+今日は〇〇さんに、この中種法がまるごと分かる
+【中種法まるわかりガイド】をプレゼントします🎁
+
+正直に言うと、有料の教材として売ってもいいくらいの内容を、
+スマホでサクサク読める13枚にぎゅっとまとめました。
+それを、登録してくださったお礼に、今日はお贈りします☺️
+
+▼ガイドを受け取る【リンク】
+
+まずは、ながめるだけでOKです☺️
+「へぇ、そうだったんだ」と思ってもらえたら、今日は花マルです💮
+
+そして5日目には、このガイドの中種で実際に焼ける【体験レシピ】をプレゼントする予定です🍞
+どうぞ、楽しみにしていてくださいね！
+
+○●————————————●○
+
+明日は、初心者さんが一番不安な「これで合ってるの…？」をなくすお話です。
+
+それでは、また明日！
+むぎでした🌾</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Day2 ============ -->
+  <section class="msg" id="d2">
+    <div class="sec-head">
+      <span class="sec-when">Day2（21:10）</span>
+      <h2>Day2：OKサインの見極め</h2>
+      <span class="pill ok">✅ 確定</span>
+      <a class="backtop" href="#top">↑ 一覧へ</a>
+    </div>
+    <div class="meta">
+      <div><span class="k">カード</span><span class="v">冒頭：その中種、合ってるか3秒で分かります。（サブ：中種法 入門 Day2）／プレゼント：「これで合ってるのかな…？」を、なくす1枚。（サブ：中種のOKサイン早見表）／ボタン「早見表を受け取る📌」</span></div>
+      <div><span class="k">メール件名</span><span class="v">〇〇さん、その中種「合ってるか」3秒で分かります</span></div>
+      <div><span class="k">配布・タグ</span><span class="v"><em>ボタンタップで早見表PDF送付 → タグ Day2_早見表_受取</em></span></div>
+    </div>
+    <div class="versions">
+      <div class="version line">
+        <div class="v-head"><span class="v-chip">LINE版</span></div>
+        <div class="v-body">〇〇さん、こんにちは！パン職人のむぎです🍞
+
+昨日のガイドは、ご覧いただけましたか？☺️
+「中種」と送ってくださった方、ありがとうございます！
+
+○●————————————●○
+
+ガイドを読んで、こう思いませんでしたか？
+
+「作り方は分かった。でも…
+私の中種が合ってるか、どうやって分かるの？」
+
+実は私も習いたての頃、発酵した生地の前で何度も固まっていました😂
+
+でも、大丈夫。
+
+＼中種には、4つの「OKサイン」があります／
+
+このサインさえ知っていれば、もう生地の前で迷いません✨
+
+○●————————————●○
+
+今日は、この4つをキッチンに貼れる1枚にした【OKサイン早見表】をプレゼントします🎁
+
+このあと届く「受け取る」ボタンからどうぞ👇
+
+印刷して、こねる場所のそばに📌
+スマホ保存だけでもOKです！
+
+○●————————————●○
+
+明日は「もし失敗しちゃったら…？」を消すお話。
+実は中種、失敗しても取り返せます。
+
+それでは、また明日！
+むぎでした🌾</div>
+      </div>
+      <div class="version mail">
+        <div class="v-head"><span class="v-chip">メール版</span><span class="v-note">全文</span></div>
+        <div class="v-body">〇〇さん、こんにちは！パン職人のむぎです🍞
+
+昨日の【中種法まるわかりガイド】は、ご覧いただけましたか？☺️
+
+○●————————————●○
+
+さて、ガイドを読んで、こう思いませんでしたか？
+
+「作り方は分かった。でも…
+私の中種が合ってるかどうか、どうやって分かるの？」
+
+そうなんです。
+初心者さんが一番不安になるのは、作っている最中の「これで合ってるのかな…？」なんです。
+
+実は私も、パンを習いたての頃は、発酵した生地の前で何度も固まっていました😂
+「進めていいの？ダメなの？」って。
+
+でも、大丈夫。
+
+＼中種には、4つの「OKサイン」があります／
+
+「もう本ごねに進んでいいよ」の合図です。
+このサインさえ知っていれば、〇〇さんはもう、生地の前で迷いません✨
+
+○●————————————●○
+
+今日は、この4つのOKサインをキッチンに貼れる1枚にまとめた【OKサイン早見表】をプレゼントします🎁
+昨日のガイドの中で、一番大事な部分を、こねながらパッと確認できる形にしました。
+
+▼早見表を受け取る【リンク】
+
+印刷して、こねる場所のそばに貼ってみてくださいね📌
+スマホに保存しておくだけでもOKです！
+
+○●————————————●○
+
+明日は、「もし失敗しちゃったら…？」という不安を消すお話です。
+実は中種、失敗してもちゃんと取り返せます。
+
+それでは、また明日！
+むぎでした🌾</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Day3 ============ -->
+  <section class="msg" id="d3">
+    <div class="sec-head">
+      <span class="sec-when">Day3（21:10）</span>
+      <h2>Day3：失敗とリカバリー</h2>
+      <span class="pill ok">✅ 確定</span>
+      <a class="backtop" href="#top">↑ 一覧へ</a>
+    </div>
+    <div class="meta">
+      <div><span class="k">カード</span><span class="v">失敗しても、ちゃんと取り返せます。（サブ：中種法 入門 Day3）</span></div>
+      <div><span class="k">メール件名</span><span class="v">〇〇さん、中種は失敗しても取り返せます</span></div>
+      <div><span class="k">配布</span><span class="v">なし（配信のみの日）</span></div>
+    </div>
+    <div class="versions">
+      <div class="version line">
+        <div class="v-head"><span class="v-chip">LINE版</span></div>
+        <div class="v-body">〇〇さん、こんにちは！パン職人のむぎです🍞
+
+早見表は受け取っていただけましたか？☺️
+
+でも…まだこんな心配、残っていませんか？
+「もし、失敗しちゃったらどうしよう…」
+
+今日は、その不安を消しにきました💪
+
+○●————————————●○
+
+一番多い失敗が、これ。
+
+＼「忘れてて放置しちゃった！」／
+
+大丈夫。捨てないでくださいね！
+まず、においをチェック👃
+
+👉少し香りが強いくらいなら、そのまま使ってOK
+👉はっきり "酸っぱい" 時だけ、無理して使わないでくださいね
+
+もうひとつ、「今日、焼く時間が取れなくなった…」も大丈夫。
+👉中種は、仕込んだ翌日中までなら使えます✨
+
+中種は〇〇さんが思っているより、ずっとおおらかです☺️
+
+○●————————————●○
+
+リカバリーさえ知っていれば、失敗は「経験」に変わります🌱
+安心して挑戦してくださいね。
+
+明日は、中種法の一番すごいところのお話。
+ひとつ覚えると…続きは明日🍞
+
+それでは、また明日！
+むぎでした🌾</div>
+      </div>
+      <div class="version mail">
+        <div class="v-head"><span class="v-chip">メール版</span><span class="v-note">全文</span></div>
+        <div class="v-body">〇〇さん、こんにちは！パン職人のむぎです🍞
+
+早見表は受け取っていただけましたか？☺️
+これで〇〇さんは、「合ってるかどうか」で迷わなくなりました。
+
+でも…まだ、こんな心配が残っていませんか？
+
+「もし、失敗しちゃったらどうしよう…」
+
+今日は、その不安を消しにきました💪
+
+○●————————————●○
+
+実は、中種作りでよくある「失敗した…！」は、ほとんどの場合、ちゃんと取り返せます。
+
+たとえば、一番多いのがこれ。
+
+＼「忘れてて放置しちゃった！」／
+
+大丈夫。捨てないでくださいね！
+まず、においをチェックしてみてください👃
+
+👉少し香りが強いくらいなら、そのまま使ってOK
+👉はっきり "酸っぱい" 匂いがする時だけ、無理して使わないでくださいね
+
+つまり、判断はにおいひとつ。かんたんです☺️
+
+もうひとつ、よくあるのがこちら。
+
+「今日、焼く時間が取れなくなった…」
+
+これも大丈夫。
+👉中種は、仕込んだ翌日中までなら使えます✨
+
+予定が変わっても、慌てなくて大丈夫。
+中種は〇〇さんが思っているより、ずっとおおらかです。
+
+○●————————————●○
+
+パン作りって、「一度失敗したら終わり」だと思われがちですが、本当は違います。
+リカバリーの方法さえ知っていれば、失敗は「経験」に変わります🌱
+
+だから〇〇さん、安心して挑戦してくださいね。
+
+明日は、中種法の一番すごいところのお話です。
+実はこの作り方、ひとつ覚えると…続きは明日のお楽しみに🍞
+
+それでは、また明日！
+むぎでした🌾</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Day4 ============ -->
+  <section class="msg" id="d4">
+    <div class="sec-head">
+      <span class="sec-when">Day4（21:10）</span>
+      <h2>Day4：応用の広がり</h2>
+      <span class="pill ok">✅ 改訂済み</span>
+      <a class="backtop" href="#top">↑ 一覧へ</a>
+    </div>
+    <div class="flag">
+      <b>改訂しました（2026-07-19）：</b>この回を新しい前提〈中種法＝<b>お店（パン屋さん）でよく使われる基本の作り方で、お家でも使いやすい</b>〉に沿って書き直しました。むぎさんが気に入っていた「これひとつ覚えれば、いろんなパンに派生できる」流れは残しています。「一生もの／覚える"土台"はひとつだけ」という言い方だけを差し替えました。
+    </div>
+    <div class="meta">
+      <div><span class="k">カード</span><span class="v">お店の作り方なのに、お家で使える。（サブ：中種法 入門 Day4）</span></div>
+      <div><span class="k">メール件名</span><span class="v">〇〇さん、中種法の一番すごいところ</span></div>
+      <div><span class="k">配布</span><span class="v">なし（配信のみの日）</span></div>
+    </div>
+    <div class="versions">
+      <div class="version line">
+        <div class="v-head"><span class="v-chip">LINE版</span></div>
+        <div class="v-body">〇〇さん、こんにちは！パン職人のむぎです🍞
+
+今日は、中種法の一番すごいところをお伝えします。
+
+それは——
+
+＼お店でよく使われる作り方なのに、お家でも使いやすい／
+
+パン屋さんが「基本」として使っている中種法。
+特別な道具もいらないので、お家でもかんたんに取り入れられます☺️
+
+○●————————————●○
+
+しかも、うれしいのはここから。
+
+🍞同じ中種から、しっとりの食パン
+🥐同じ中種から、じゅわっとバターの塩パン
+🍩ドーナツも、バゲットも。
+
+覚える基本の中種はひとつ。
+そこから作れるパンが、どんどん広がっていくんです✨
+
+「今月はどのパンにしようかな？」って選ぶ楽しみが生まれて、〇〇さんの食卓の景色が変わっていきます🌱
+
+○●————————————●○
+
+ここまで読んで、「…そろそろ焼いてみたい」と思っていませんか？☺️
+
+お待たせしました。
+明日、いよいよ【体験レシピ】をプレゼントします🎁
+
+しかも、作り方の動画つき。
+初めてでも、私が焼く様子を見ながら一緒に作れます☺️
+
+🍞型があれば → 中種食パン
+🧂型がなくても → 塩パン
+
+〇〇さんの初めての中種パン、一緒に焼きましょう！
+
+それでは、また明日！
+むぎでした🌾</div>
+      </div>
+      <div class="version mail">
+        <div class="v-head"><span class="v-chip">メール版</span><span class="v-note">全文</span></div>
+        <div class="v-body">〇〇さん、こんにちは！パン職人のむぎです🍞
+
+昨日お話しした通り、今日は中種法の一番すごいところをお伝えします。
+
+ここまで、中種法の作り方、OKサイン、リカバリーとお話ししてきました。
+でも実は、まだ一番大事なことを言っていませんでした。
+
+それは——
+
+＼お店でよく使われる作り方なのに、お家でも使いやすい／
+
+中種法は、パン屋さんが「基本」として使っている作り方のひとつです。
+プロの現場の製法と聞くと難しそうですが、特別な道具はいりません。
+お家のキッチンでも、かんたんに取り入れられます☺️
+
+○●————————————●○
+
+そして、うれしいのはここからです。
+
+〇〇さん、想像してみてください。
+
+🍞同じ中種から、しっとりの食パンが焼けます
+🥐同じ中種から、じゅわっとバターの塩パンが焼けます
+🍩ドーナツも、バゲットも。
+
+そう、基本の中種はひとつ。
+そこから作れるパンが、どんどん広がっていくんです✨
+
+パン屋さんでよく使われる作り方をひとつ知るだけで、同じ材料でもパンのクオリティが変わって、しかもいろんなパンに派生させていける。
+これが、私が中種法を「最初のひとつ」としてお伝えしている理由です。
+
+そして、パン作りがもっと楽しくなるのはここから。
+「今月はどのパンにしようかな？」って、選ぶ楽しみが生まれます🌱
+
+レパートリーがひとつ増えるたび、〇〇さんの食卓の景色が変わっていきます。
+焼きたてのパンの香りで始まる朝って、想像しただけで幸せじゃないですか？☺️
+
+○●————————————●○
+
+さて、ここまで読んでくださった〇〇さんは、もう気づいているかもしれません。
+
+「…そろそろ、実際に焼いてみたい」って。
+
+お待たせしました。
+
+明日、いよいよ【体験レシピ】をプレゼントします🎁
+
+しかも、作り方の動画つき。
+文章だけでなく、私が実際に作る様子を見ながら焼けるので、
+初めてでも安心して進められます☺️
+
+🍞型があれば → 中種食パン
+🧂型がなくても → 塩パン
+
+どちらも、この5日間で学んだ1つの中種から作れます。
+〇〇さんの初めての中種パン、一緒に焼きましょう！
+
+それでは、また明日！
+むぎでした🌾</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Day5 ============ -->
+  <section class="msg" id="d5">
+    <div class="sec-head">
+      <span class="sec-when">Day5（21:10）</span>
+      <h2>Day5：体験レシピへ招待</h2>
+      <span class="pill ok">✅ 確定</span>
+      <a class="backtop" href="#top">↑ 一覧へ</a>
+    </div>
+    <div class="meta">
+      <div><span class="k">カード</span><span class="v">あとは、焼くだけ。（サブ：中種法 入門 Day5・体験レシピ）／ボタン「レシピを受け取る🍞」</span></div>
+      <div><span class="k">メール件名</span><span class="v">〇〇さん、お待たせしました。体験レシピをどうぞ🍞</span></div>
+      <div><span class="k">配布・タグ</span><span class="v"><em>「レシピを受け取る🍞」タップで体験レシピ＋動画を送付 → タグ Day5_レシピ_受取／つくれぽ送信者 → タグ Day5_つくれぽ</em></span></div>
+    </div>
+    <div class="versions">
+      <div class="version line">
+        <div class="v-head"><span class="v-chip">LINE版</span></div>
+        <div class="v-body">〇〇さん、こんにちは！パン職人のむぎです🍞
+
+とうとう、この日がやってきました☺️
+5日間おつきあいいただき、ありがとうございます！
+
+〇〇さんはもう、しっとりの理由も、OKサインも、リカバリーも知っています。
+
+もう、知識は十分です。
+
+＼あとは——焼くだけ✨／
+
+○●————————————●○
+
+お約束の【体験レシピ】をプレゼントします🎁
+1つの中種から、2つのパンが焼けます。
+
+🍞型があれば → 中種食パン
+🧂型がなくても → 塩パン
+
+作り方の動画つきなので、初めてでも大丈夫☺️
+
+下の「レシピを受け取る」ボタンからどうぞ👇
+
+○●————————————●○
+
+仕込みは、都合のいい夜でOK🌙
+迷ったらDay2の早見表を📌
+
+焼けたら、ぜひこのLINEに「つくれぽ」を送ってください📷
+私からアドバイスをお返しすることもできますし、質問も大歓迎です☺️
+
+うまく焼けても、焼けなくても大丈夫。
+気軽に連絡してくださいね！
+〇〇さんのつくれぽ、本当に楽しみにしています…！
+
+まずは——おいしいパン、焼きましょう🍞
+
+むぎでした🌾
+
+【ボタン】レシピを受け取る🍞</div>
+      </div>
+      <div class="version mail">
+        <div class="v-head"><span class="v-chip">メール版</span><span class="v-note">全文</span></div>
+        <div class="v-body">〇〇さん、こんにちは！パン職人のむぎです🍞
+
+とうとう、この日がやってきました。
+5日間おつきあいいただき、本当にありがとうございます☺️
+
+この5日間で、〇〇さんはもう知っています。
+
+パン屋さんのパンが翌日もしっとりしている理由。
+中種の「OKサイン」の見極め方。
+失敗しても取り返せること。
+そして、ひとつの中種から、いろんなパンが焼けること。
+
+もう、知識は十分です。
+あとは——焼くだけ✨
+
+○●————————————●○
+
+お約束していた【体験レシピ】をプレゼントします🎁
+
+私が初心者さんのために作った、特製の中種生地レシピです。
+この1つの中種から、2つのパンが焼けます。
+
+🍞型があれば → 中種食パン
+ふたを開けた瞬間、ふわっと甘い香り。翌日もしっとりの、あの食パンです。
+
+🧂型がなくても → 塩パン
+じゅわっとバターがしみた、焼きたてが一番おいしいパン。型なしで気軽に焼けます。
+
+作り方の動画もセットにしているので、初めてでも動画と一緒に進めれば大丈夫です☺️
+
+▼レシピを受け取る🍞【リンク】
+
+○●————————————●○
+
+最初の中種を仕込む日は、〇〇さんの都合のいい夜でOKです。
+夜に混ぜて、寝ている間に冷蔵庫におまかせ。
+翌日の好きな時間に、焼いてみてください🌙
+
+もし途中で「これで合ってるかな？」と思ったら、Day2の早見表を見てくださいね📌
+「失敗しちゃったかも」と思っても、Day3のお話を思い出せば大丈夫です。
+
+そして、〇〇さんのパンが焼けたら——
+ぜひこのLINEに「つくれぽ」を送ってください📷
+
+送っていただいたつくれぽには、私からアドバイスをお返しすることもできます。
+「ここがうまくいかなかった」「これで合ってた？」などの質問も大歓迎です☺️
+
+うまく焼けても、焼けなくても大丈夫。
+どうぞ気軽に、連絡してくださいね。
+〇〇さんのつくれぽ、本当に楽しみにしています…！
+
+5日間、ありがとうございました。
+でも、むぎからのお話は、まだ終わりじゃありません☺️
+
+近いうちに、〇〇さんにお話ししたいことがあります。
+それはまた、あらためて。
+
+まずは——おいしいパン、焼きましょう🍞
+
+むぎでした🌾</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Day6 ============ -->
+  <section class="msg" id="d6">
+    <div class="sec-head">
+      <span class="sec-when">Day6（翌日 21:10）</span>
+      <h2>Day6：5日間のふり返り＋Bread &amp; Tableの匂わせ</h2>
+      <span class="pill ok">✅ 確定</span>
+      <a class="backtop" href="#top">↑ 一覧へ</a>
+    </div>
+    <div class="meta">
+      <div><span class="k">カード</span><span class="v">5日間、おつかれさまでした。（サブ：むぎより、ひとこと）／ボタンなし</span></div>
+      <div><span class="k">メール件名</span><span class="v">〇〇さん、5日間おつかれさまでした🍞</span></div>
+      <div><span class="k">配布・タグ</span><span class="v"><em>なし（ふり返り＋B&amp;T匂わせのフォロー配信。返信を促す設計）</em></span></div>
+    </div>
+    <div class="versions">
+      <div class="version line">
+        <div class="v-head"><span class="v-chip">LINE版</span></div>
+        <div class="v-body">〇〇さん、こんばんは🌙 パン職人のむぎです🍞
+
+中種法の5日間、おつかれさまでした☺️
+どうでしたか？ 見落としているところは、ないですか？
+
+○●————————————●○
+
+もし「まだ開けていない日があるかも」でも、大丈夫。
+配信はいつでも見返せます。
+「この日の話、もう一回見たいな」があれば、ゆっくりどうぞ。
+
+よかったら、どの日がいちばん心に残ったか、このLINEに返信で教えてくださいね😊
+
+○●————————————●○
+
+実はこの5日間のような「お店で使われている製法を、家庭向けにアレンジした新作レシピ」を、毎月お届けしている場所があるんです。
+
+＼パン作りが学べるサブスク、「Bread &amp; Table」という場所です／
+
+……そのお話は、また近いうちに。
+
+まずは、パン作りを楽しんでもらえていたら嬉しいです🍞
+
+むぎでした🌾</div>
+      </div>
+      <div class="version mail">
+        <div class="v-head"><span class="v-chip">メール版</span><span class="v-note">全文</span></div>
+        <div class="v-body">〇〇さん、こんばんは🌙 パン職人のむぎです🍞
+
+中種法の5日間、おつかれさまでした☺️
+最後までお付き合いくださって、本当にありがとうございました。
+
+○●————————————●○
+
+この5日間では、
+・同じレシピなのに焼き上がりが変わる理由
+・中種の「OKサイン」の見極め方
+・失敗したときの取り返し方
+・お店の製法が、お家でも使えること
+そして最後に、体験レシピをお届けしました。
+
+どうでしたか？ 見落としているところは、ないですか？
+
+もし「まだ開けていない日があるかも」でも、大丈夫です。
+配信はいつでも見返せます。〇〇さんのペースで、ゆっくりどうぞ。
+
+よかったら、どの日がいちばん心に残ったか、このメールに返信で教えてもらえたら嬉しいです😊
+
+○●————————————●○
+
+そして、ひとつだけ。
+
+実はこの5日間のような「お店で使われている製法を、家庭でも作りやすくアレンジした新作レシピ」を、毎月お届けしている場所があります。
+
+＼パン作りが学べるサブスク、「Bread &amp; Table」という場所です／
+
+基礎の動画も見放題で、視聴期限もありません。
+好きな時間に、好きな場所で、ゆっくり作れます。
+
+……でも、そのお話は、また近いうちに、あらためて。
+
+まずは、この5日間のパン作りを楽しんでもらえていたら、それがいちばん嬉しいです。
+またお会いしましょうね。
+
+むぎでした🌾</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    正のファイル：03_出力/Bread&amp;Table/2026-07-06_UTAGE構築指示書_5日間配信.md ／ 全原稿は確定版・変更禁止（修正はむぎさん確認のうえ正ファイルへ反映）<br>
+    関連ページ：<a href="index.html" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none; font-weight:600;">秘書チーム向けブリーフィング</a> ・ <a href="zen-bosyu.html" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none; font-weight:600;">募集配信 全12通 全原稿</a>
+  </footer>
+</div>
