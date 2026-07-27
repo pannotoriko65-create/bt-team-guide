@@ -1,0 +1,255 @@
+<title>UTAGE構築手順書｜募集配信11通</title>
+<style>
+  :root{
+    --bg:#FAF6EC; --panel:#FFFDF6; --panel-2:#F5EEDD; --ink:#46331E; --body:#574326;
+    --muted:#8C7B60; --line:#E7DBC2; --line-2:#EAD9B6;
+    --kitsune:#D9831F; --kitsune-soft:#EFA23E; --kitsune-bg:#FBEFD9;
+    --ok:#5E8C5A; --ok-bg:#E7F0E3; --wait:#C0842A; --wait-bg:#FBEECF;
+    --line-green:#06C755; --mail-blue:#3B7BD1;
+    --shadow:0 1px 2px rgba(70,51,30,.06), 0 8px 30px rgba(70,51,30,.06);
+    --radius:14px;
+    --serif:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#221A12; --panel:#2C2117; --panel-2:#33271A; --ink:#F3E7D2; --body:#E4D6BF;
+      --muted:#B39E7F; --line:#3D2F20; --line-2:#4A3826;
+      --kitsune:#EFA23E; --kitsune-soft:#E0912F; --kitsune-bg:#3A2A17;
+      --ok:#8FC489; --ok-bg:#26311F; --wait:#E7B860; --wait-bg:#382a13;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#FAF6EC; --panel:#FFFDF6; --panel-2:#F5EEDD; --ink:#46331E; --body:#574326;
+    --muted:#8C7B60; --line:#E7DBC2; --line-2:#EAD9B6; --kitsune:#D9831F; --kitsune-soft:#EFA23E;
+    --kitsune-bg:#FBEFD9; --ok:#5E8C5A; --ok-bg:#E7F0E3; --wait:#C0842A; --wait-bg:#FBEECF;
+    --shadow:0 1px 2px rgba(70,51,30,.06), 0 8px 30px rgba(70,51,30,.06);
+  }
+  :root[data-theme="dark"]{
+    --bg:#221A12; --panel:#2C2117; --panel-2:#33271A; --ink:#F3E7D2; --body:#E4D6BF;
+    --muted:#B39E7F; --line:#3D2F20; --line-2:#4A3826; --kitsune:#EFA23E; --kitsune-soft:#E0912F;
+    --kitsune-bg:#3A2A17; --ok:#8FC489; --ok-bg:#26311F; --wait:#E7B860; --wait-bg:#382a13;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.28);
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--body);font-family:var(--sans);line-height:1.75;
+    font-size:16px;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:900px;margin:0 auto;padding:32px 22px 96px}
+  h1,h2,h3{color:var(--ink);text-wrap:balance;font-family:var(--serif);font-weight:600;letter-spacing:.01em}
+  a{color:var(--kitsune);text-underline-offset:3px}
+  p{margin:.5em 0}
+
+  /* header */
+  .eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--kitsune);font-weight:700;margin:0 0 10px}
+  .lead-title{font-size:clamp(26px,4.4vw,38px);line-height:1.28;margin:0 0 14px}
+  .lead-sub{font-family:var(--sans);color:var(--muted);font-size:15px;margin:0}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{font-family:var(--sans);font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;
+    background:var(--panel-2);color:var(--ink);border:1px solid var(--line)}
+  .chip.k{background:var(--kitsune-bg);color:var(--kitsune);border-color:transparent}
+
+  /* nav */
+  nav.toc{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px);margin:22px -22px 0;padding:12px 22px;border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;overflow-x:auto}
+  nav.toc a{font-family:var(--sans);font-size:13px;font-weight:600;text-decoration:none;color:var(--body);
+    padding:5px 11px;border-radius:999px;background:var(--panel);border:1px solid var(--line);white-space:nowrap}
+  nav.toc a:hover{border-color:var(--kitsune-soft);color:var(--kitsune)}
+
+  section{margin-top:40px;scroll-margin-top:64px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+  .sec-num{font-family:var(--serif);font-size:14px;color:var(--kitsune);font-weight:700;
+    border:1.5px solid var(--kitsune-soft);border-radius:8px;padding:2px 9px;flex:none;line-height:1.4}
+  .sec-head h2{font-size:clamp(20px,3vw,25px);margin:0}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .card.tint{background:var(--kitsune-bg);border-color:transparent}
+  .card h3{font-size:17px;margin:0 0 8px}
+
+  .callout{border-left:3px solid var(--kitsune);background:var(--panel-2);
+    border-radius:0 10px 10px 0;padding:13px 16px;margin:14px 0;font-size:14.5px}
+  .callout b{color:var(--ink)}
+
+  /* funnel */
+  .funnel{display:flex;flex-direction:column;gap:0;margin:8px 0}
+  .fstep{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 16px;
+    display:flex;gap:13px;align-items:center;box-shadow:var(--shadow);position:relative}
+  .fstep .n{font-family:var(--serif);font-weight:700;color:var(--kitsune);font-size:15px;flex:none;
+    width:26px;height:26px;border-radius:50%;background:var(--kitsune-bg);display:grid;place-items:center}
+  .fstep .t{font-weight:700;color:var(--ink);font-size:15px}
+  .fstep .d{color:var(--muted);font-size:13px;font-family:var(--sans)}
+  .fconn{width:2px;height:16px;background:var(--line-2);margin:3px 0 3px 34px}
+  .fstep.hot{border-color:var(--kitsune-soft);background:var(--kitsune-bg)}
+
+  /* timeline */
+  .tl{display:flex;flex-direction:column;gap:0;margin-top:6px}
+  .tl-item{display:grid;grid-template-columns:112px 1fr;gap:16px;padding:14px 0;border-top:1px dashed var(--line-2)}
+  .tl-item:first-child{border-top:none}
+  .tl-when{font-family:var(--sans)}
+  .tl-when .day{font-weight:800;color:var(--ink);font-size:15px}
+  .tl-when .time{color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
+  .tl-body .theme{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:3px}
+  .tl-body .give{font-size:14px}
+  .give .none{color:var(--muted)}
+  .tag{display:inline-block;font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--kitsune);
+    background:var(--kitsune-bg);border-radius:6px;padding:2px 8px;margin:4px 4px 0 0;font-variant-numeric:tabular-nums}
+
+  /* tables */
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:14px 0}
+  table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:13.5px;min-width:520px}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--panel-2);color:var(--ink);font-weight:700;white-space:nowrap;position:sticky;top:0}
+  tr:last-child td{border-bottom:none}
+  td.mono,.mono{font-variant-numeric:tabular-nums}
+
+  .pill{display:inline-flex;align-items:center;gap:5px;font-family:var(--sans);font-size:11.5px;font-weight:700;
+    padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .pill.ok{background:var(--ok-bg);color:var(--ok)} .pill.wait{background:var(--wait-bg);color:var(--wait)}
+  .pill.ln{background:var(--panel-2);color:var(--line-green)} .pill.ml{background:var(--panel-2);color:var(--mail-blue)}
+
+  /* checklist */
+  .ck-group{margin:16px 0}
+  .ck-group > .lbl{font-family:var(--sans);font-weight:800;color:var(--ink);font-size:14px;
+    display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .ck-group > .lbl .badge{font-size:11px;font-weight:700;color:#fff;background:var(--kitsune);
+    border-radius:6px;padding:2px 8px}
+  .ck{display:flex;gap:11px;align-items:flex-start;padding:9px 13px;border:1px solid var(--line);
+    border-radius:10px;background:var(--panel);margin:7px 0;cursor:pointer;transition:.15s}
+  .ck:hover{border-color:var(--kitsune-soft)}
+  .ck input{margin-top:3px;width:17px;height:17px;accent-color:var(--kitsune);flex:none;cursor:pointer}
+  .ck .txt{font-size:14px}
+  .ck .txt small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+  .ck.done .txt{text-decoration:line-through;color:var(--muted)}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  .kv{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kv .term{font-weight:800;color:var(--ink);font-size:14.5px;margin-bottom:3px}
+  .kv .def{font-size:13.5px;color:var(--body);font-family:var(--sans)}
+  a.kv{text-decoration:none;transition:.15s}
+  a.kv:hover{border-color:var(--kitsune-soft);box-shadow:var(--shadow);transform:translateY(-1px)}
+  a.kv .go{color:var(--kitsune);font-size:12px;font-weight:700;font-family:var(--sans);margin-top:6px;display:inline-block}
+  .docrow .term{display:flex;align-items:center;gap:7px}
+
+  ul.tight{margin:.4em 0;padding-left:1.25em}
+  ul.tight li{margin:.28em 0}
+  .foot{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);
+    font-family:var(--sans);font-size:12.5px}
+  .print-hint{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:6px}
+  @media (max-width:560px){
+    .tl-item{grid-template-columns:88px 1fr;gap:11px}
+    .wrap{padding:24px 15px 80px}
+    nav.toc{margin-left:-15px;margin-right:-15px;padding-left:15px;padding-right:15px}
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">構築担当者向け ── UTAGE構築指示書</p>
+    <h1 class="lead-title">募集配信の構築手順（予告①〜配信10・全12通）</h1>
+    <p class="lead-sub">毎月の募集期間（28日〜翌5日）＋締切翌日（6日）に、リスト全員へ一斉配信する12通の設定手順です。ステップ配信とは<b>別のシナリオ</b>。<b>配信の本文は「募集配信 全原稿」ページ</b>を見てください。</p>
+    <div class="callout"><b>本文原稿は一言一句確定・ロック済み（2026-07-20）。</b>変更が必要なときは必ずむぎに確認。「〇〇さん」は名前差し込み変数に置き換え。</div>
+  </header>
+  <nav style="margin:18px 0 4px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;"><span style="color:var(--muted);">関連ページ：</span><a href="index.html" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">📋 ブリーフィング</a> <a href="zen-bosyu.html" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">📣 募集配信 全原稿（本文）</a> <a href="tejun-5day.html" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">📨 5日間 手順書</a> <a href="yaru.html" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">📋 やることリスト</a></nav>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">0</span><h2>この配信の位置づけ（最重要）</h2></div>
+    <ul class="tight">
+      <li>ステップ配信を終えて温まった読者へ、<b>毎月の募集期間に一斉配信</b>する</li>
+      <li><b>1人1回だけ</b>。同じ人に翌月もう一度は流さない（毎月同じ文面だと自動配信だと分かってしまうため）。制御はタグ2つ（§3）</li>
+      <li>全配信 LINE＋メールの2チャネル。<b>LINE版＝短い凝縮版／メール版＝全文版</b>。取り違えないこと</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">1</span><h2>全体像</h2></div>
+    <p class="lead-sub">広告 → LP → LINE登録（＋メール取得）→ ステップ配信（登録直後〜Day5）→ <b>【この資料】毎月の募集配信（予告①〜配信9）</b> → 入会（MOSH決済）</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">2</span><h2>配信スケジュール（全12通）</h2></div>
+    <p class="lead-sub">配信時刻の基準：朝＝9:00／夜＝21:00／募集開始＝1日21:00。締切＝5日23:59。予告0（25日）は廃止。</p>
+    <div class="tbl-wrap"><table><thead><tr><th>#</th><th>タイミング</th><th>配信対象</th><th>内容</th><th>ボタン／リンク</th><th>付与・利用タグ</th></tr></thead><tbody><tr><td>予告①</td><td>前月28日 21:00</td><td>Day5完了 かつ 未入会 かつ ローンチ_案内済みなし</td><td>募集日時の告知＋期待醸成</td><td>なし</td><td>予告①配信時に ローンチ_案内済み＋ローンチ_今月対象 を付与</td></tr><tr><td>予告②</td><td>前月末日 21:00</td><td>ローンチ_今月対象（入会者除外）</td><td>統合版動画つき前日予告</td><td>動画を見る🎬</td><td>動画リンク</td></tr><tr><td>配信1</td><td>1日 12:00</td><td>同上</td><td>当日予告「今夜21時スタート」</td><td>なし</td><td>—</td></tr><tr><td>配信2</td><td>1日 21:00</td><td>同上</td><td>募集開始・B&amp;T全体像・LP誘導</td><td>詳しく見る🍞／note FAQ</td><td>ローンチ_LP_タップ</td></tr><tr><td>配信3</td><td>2日 9:00</td><td>同上</td><td>よくある質問</td><td>詳しく見る🍞</td><td>ローンチ_LP_タップ</td></tr><tr><td>配信4</td><td>2日 21:00</td><td>同上</td><td>今月の新作紹介＋メニュー記事</td><td>メニューを見る🍞／LP</td><td>ローンチ_メニュー記事_タップ／ローンチ_LP_タップ</td></tr><tr><td>配信5</td><td>3日 9:00</td><td>同上</td><td>会員の声紹介（社会的証明）</td><td>詳しく見る🍞</td><td>ローンチ_LP_タップ</td></tr><tr><td>配信6</td><td>4日 9:00</td><td>同上</td><td>入会後の1ヶ月の流れ</td><td>詳しく見る🍞</td><td>ローンチ_LP_タップ</td></tr><tr><td>配信7</td><td>4日 21:00</td><td>同上</td><td>締切前夜「明日が最終日」</td><td>詳しく見る🍞</td><td>ローンチ_LP_タップ</td></tr><tr><td>配信8</td><td>5日 9:00</td><td>同上</td><td>最終日のご案内</td><td>詳しく見る🍞</td><td>ローンチ_LP_タップ</td></tr><tr><td>配信9</td><td>5日 21:00</td><td>同上 かつ 未申込のみ</td><td>残り3時間の最終アラーム</td><td>申し込みはこちら🍞</td><td>ローンチ_LP_タップ</td></tr><tr><td>配信10</td><td>6日 12:00</td><td>同上 かつ 未申込のみ</td><td>締め切り御礼＋希少性＋「次こそ」</td><td>なし</td><td>—（配信後に ローンチ_今月対象 を全員解除）</td></tr></tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">3</span><h2>タグ・セグメント設計（1人1回制御の要）</h2></div>
+    <div class="callout"><b>この12通を同じ人に二度流さないための仕組み。1つでも漏れると翌月に再配信されるので必ず設定してください。</b></div>
+    <h3>3-1. 制御タグ（2つ）</h3>
+    <div class="tbl-wrap"><table><thead><tr><th>タグ</th><th>付与タイミング</th><th>解除</th><th>役割</th></tr></thead><tbody><tr><td>ローンチ_案内済み</td><td>予告①の配信時</td><td>永久に外さない</td><td>この人は予告①の対象に二度と入らない＝11通が再配信されない</td></tr><tr><td>ローンチ_今月対象</td><td>予告①の配信時</td><td>毎月6日（配信10のあと）に全員から解除</td><td>予告②〜配信10の配信対象はこのタグ（＋入会者除外）だけ</td></tr></tbody></table></div>
+    <ul class="tight">
+      <li>予告①の配信条件＝<b>Day5完了 かつ 未入会 かつ ローンチ_案内済みなし</b>。この3条件を満たした人にだけ予告①を送り、同時に上記2タグを付ける</li>
+      <li>Day5完了が28日を過ぎた人はその月のタグが付かず、翌月28日の予告①から1巡目が始まる</li>
+    </ul>
+    <h3>3-2. 反応タグ（分析用）</h3>
+    <ul class="tight"><li>LP リンク／ボタンタップ → ローンチ_LP_タップ（全配信共通）</li><li>配信4のメニュー記事タップ → ローンチ_メニュー記事_タップ</li></ul>
+    <h3>3-3. セグメント（2種のみ）</h3>
+    <ul class="tight">
+      <li>①今月対象（ローンチ_今月対象 かつ 入会者除外）＝予告②〜配信8</li>
+      <li>②未申込のみ（①に加えて未申込）＝配信9・配信10</li>
+      <li>つくれぽセグメント配信は廃止（Day5_つくれぽ の収集自体は継続するが、ローンチ配信には使わない）</li>
+    </ul>
+    <h3>3-4. 申込者の除外</h3>
+    <ul class="tight"><li>申込完了者（MOSH決済済み）は募集配信の対象から除外。MOSH連携 or 手動リストのどちらにするかを構築時に決定・要確認</li></ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">4</span><h2>リンク・差し込みの設定箇所</h2></div>
+    <div class="tbl-wrap"><table><thead><tr><th>差し込むもの</th><th>場所</th><th>内容</th></tr></thead><tbody><tr><td>LP（募集LP）</td><td>配信2〜9の「詳しく見る🍞」等</td><td>募集LPのURL（決済導線）</td></tr><tr><td>note FAQ</td><td>配信2</td><td>note.com/mugi_pannotoriko/n/nf24996d8cccf</td></tr><tr><td>メニュー記事</td><td>配信4</td><td>毎月のブログ記事URL（末尾にLPリンク必須）※毎月差し替え</td></tr><tr><td>統合版動画</td><td>予告②</td><td>UTAGE動画ページ or YouTube限定公開 ※動画完成後に差し込み</td></tr><tr><td>会員の声4件</td><td>配信5</td><td>実物の感想（LINE3件／メール4件）※むぎ提供後に差し込み</td></tr></tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">5</span><h2>毎月差し替える項目（エバーグリーン運用）</h2></div>
+    <ul class="tight">
+      <li>本文中の日付「◯月1日（◯）」「◯月5日（◯）」など</li>
+      <li>配信4：今月のパン名・紹介文・メニュー記事URL</li>
+      <li>予告①・予告②のカード画像は月非依存＝作り直し不要</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">6</span><h2>テスト配信チェックリスト（公開前）</h2></div>
+    <div class="ck-group">
+      <div class="lbl"><span class="badge">確認</span>公開前チェック</div>
+      <label class="ck"><input type="checkbox"><span class="txt">LINE版とメール版を取り違えていない（LINE＝短い版／メール＝全文版）</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">全配信のカード画像が正しく表示される</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">LP・note・メニュー記事・動画のリンクが正しく開く</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">ボタンタップでタグが付く（ローンチ_LP_タップ 等）</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">予告①で ローンチ_案内済み＋ローンチ_今月対象 が両方付く</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">6日に ローンチ_今月対象 が全員から解除される設定になっている</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">入会者が予告②以降の対象から除外される</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">配信9が未申込のみに届く</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">「〇〇さん」の差し込み変数が全配信で正しく動く</span></label>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">7</span><h2>文体・締めの注意（崩さない）</h2></div>
+    <ul class="tight">
+      <li>署名「むぎでした🌾」は適宜。LINEは予告①②・配信1・2・7・8のみ署名／配信3〜6・9は署名なし。メール版は各通に署名</li>
+      <li>【】強調・区切り線「○●————————————●○」1種のみ・「＼ ／」1配信1回。<b>Markdown太字は使わない</b></li>
+      <li>各配信の締めは配信ごとに違う理念の言葉（原稿に確定済み）。固定文に統一しない</li>
+    </ul>
+  </section>
+
+  <div class="foot" style="text-align:center">関連ページ：<a href="index.html" target="_blank" rel="noopener" style="color:var(--kitsune);text-decoration:none;font-weight:600;">秘書チーム向けブリーフィング</a> ・ <a href="zen-bosyu.html" target="_blank" rel="noopener" style="color:var(--kitsune);text-decoration:none;font-weight:600;">募集配信 全原稿</a> ・ <a href="tejun-5day.html" target="_blank" rel="noopener" style="color:var(--kitsune);text-decoration:none;font-weight:600;">5日間 手順書</a><div class="print-hint">「印刷 → PDFで保存」で配布資料にできます。チェック状態はこの端末に保存されます。</div></div>
+</div>
+<script>
+  (function(){
+    var KEY="bt_tejunB_ck_v1";
+    var boxes=[].slice.call(document.querySelectorAll('.ck input[type=checkbox]'));
+    var saved={};
+    try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+    boxes.forEach(function(b,i){
+      if(saved[i]){b.checked=true;b.closest('.ck').classList.add('done')}
+      b.addEventListener('change',function(){
+        b.closest('.ck').classList.toggle('done',b.checked);
+        saved[i]=b.checked;
+        try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}
+      });
+    });
+  })();
+</script>
