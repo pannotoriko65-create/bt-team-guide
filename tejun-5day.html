@@ -1,0 +1,226 @@
+<title>UTAGE構築手順書｜5日間ステップ配信</title>
+<style>
+  :root{
+    --bg:#FAF6EC; --panel:#FFFDF6; --panel-2:#F5EEDD; --ink:#46331E; --body:#574326;
+    --muted:#8C7B60; --line:#E7DBC2; --line-2:#EAD9B6;
+    --kitsune:#D9831F; --kitsune-soft:#EFA23E; --kitsune-bg:#FBEFD9;
+    --ok:#5E8C5A; --ok-bg:#E7F0E3; --wait:#C0842A; --wait-bg:#FBEECF;
+    --line-green:#06C755; --mail-blue:#3B7BD1;
+    --shadow:0 1px 2px rgba(70,51,30,.06), 0 8px 30px rgba(70,51,30,.06);
+    --radius:14px;
+    --serif:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#221A12; --panel:#2C2117; --panel-2:#33271A; --ink:#F3E7D2; --body:#E4D6BF;
+      --muted:#B39E7F; --line:#3D2F20; --line-2:#4A3826;
+      --kitsune:#EFA23E; --kitsune-soft:#E0912F; --kitsune-bg:#3A2A17;
+      --ok:#8FC489; --ok-bg:#26311F; --wait:#E7B860; --wait-bg:#382a13;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#FAF6EC; --panel:#FFFDF6; --panel-2:#F5EEDD; --ink:#46331E; --body:#574326;
+    --muted:#8C7B60; --line:#E7DBC2; --line-2:#EAD9B6; --kitsune:#D9831F; --kitsune-soft:#EFA23E;
+    --kitsune-bg:#FBEFD9; --ok:#5E8C5A; --ok-bg:#E7F0E3; --wait:#C0842A; --wait-bg:#FBEECF;
+    --shadow:0 1px 2px rgba(70,51,30,.06), 0 8px 30px rgba(70,51,30,.06);
+  }
+  :root[data-theme="dark"]{
+    --bg:#221A12; --panel:#2C2117; --panel-2:#33271A; --ink:#F3E7D2; --body:#E4D6BF;
+    --muted:#B39E7F; --line:#3D2F20; --line-2:#4A3826; --kitsune:#EFA23E; --kitsune-soft:#E0912F;
+    --kitsune-bg:#3A2A17; --ok:#8FC489; --ok-bg:#26311F; --wait:#E7B860; --wait-bg:#382a13;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.28);
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--body);font-family:var(--sans);line-height:1.75;
+    font-size:16px;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:900px;margin:0 auto;padding:32px 22px 96px}
+  h1,h2,h3{color:var(--ink);text-wrap:balance;font-family:var(--serif);font-weight:600;letter-spacing:.01em}
+  a{color:var(--kitsune);text-underline-offset:3px}
+  p{margin:.5em 0}
+
+  /* header */
+  .eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--kitsune);font-weight:700;margin:0 0 10px}
+  .lead-title{font-size:clamp(26px,4.4vw,38px);line-height:1.28;margin:0 0 14px}
+  .lead-sub{font-family:var(--sans);color:var(--muted);font-size:15px;margin:0}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{font-family:var(--sans);font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;
+    background:var(--panel-2);color:var(--ink);border:1px solid var(--line)}
+  .chip.k{background:var(--kitsune-bg);color:var(--kitsune);border-color:transparent}
+
+  /* nav */
+  nav.toc{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px);margin:22px -22px 0;padding:12px 22px;border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;overflow-x:auto}
+  nav.toc a{font-family:var(--sans);font-size:13px;font-weight:600;text-decoration:none;color:var(--body);
+    padding:5px 11px;border-radius:999px;background:var(--panel);border:1px solid var(--line);white-space:nowrap}
+  nav.toc a:hover{border-color:var(--kitsune-soft);color:var(--kitsune)}
+
+  section{margin-top:40px;scroll-margin-top:64px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+  .sec-num{font-family:var(--serif);font-size:14px;color:var(--kitsune);font-weight:700;
+    border:1.5px solid var(--kitsune-soft);border-radius:8px;padding:2px 9px;flex:none;line-height:1.4}
+  .sec-head h2{font-size:clamp(20px,3vw,25px);margin:0}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .card.tint{background:var(--kitsune-bg);border-color:transparent}
+  .card h3{font-size:17px;margin:0 0 8px}
+
+  .callout{border-left:3px solid var(--kitsune);background:var(--panel-2);
+    border-radius:0 10px 10px 0;padding:13px 16px;margin:14px 0;font-size:14.5px}
+  .callout b{color:var(--ink)}
+
+  /* funnel */
+  .funnel{display:flex;flex-direction:column;gap:0;margin:8px 0}
+  .fstep{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 16px;
+    display:flex;gap:13px;align-items:center;box-shadow:var(--shadow);position:relative}
+  .fstep .n{font-family:var(--serif);font-weight:700;color:var(--kitsune);font-size:15px;flex:none;
+    width:26px;height:26px;border-radius:50%;background:var(--kitsune-bg);display:grid;place-items:center}
+  .fstep .t{font-weight:700;color:var(--ink);font-size:15px}
+  .fstep .d{color:var(--muted);font-size:13px;font-family:var(--sans)}
+  .fconn{width:2px;height:16px;background:var(--line-2);margin:3px 0 3px 34px}
+  .fstep.hot{border-color:var(--kitsune-soft);background:var(--kitsune-bg)}
+
+  /* timeline */
+  .tl{display:flex;flex-direction:column;gap:0;margin-top:6px}
+  .tl-item{display:grid;grid-template-columns:112px 1fr;gap:16px;padding:14px 0;border-top:1px dashed var(--line-2)}
+  .tl-item:first-child{border-top:none}
+  .tl-when{font-family:var(--sans)}
+  .tl-when .day{font-weight:800;color:var(--ink);font-size:15px}
+  .tl-when .time{color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
+  .tl-body .theme{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:3px}
+  .tl-body .give{font-size:14px}
+  .give .none{color:var(--muted)}
+  .tag{display:inline-block;font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--kitsune);
+    background:var(--kitsune-bg);border-radius:6px;padding:2px 8px;margin:4px 4px 0 0;font-variant-numeric:tabular-nums}
+
+  /* tables */
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:14px 0}
+  table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:13.5px;min-width:520px}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--panel-2);color:var(--ink);font-weight:700;white-space:nowrap;position:sticky;top:0}
+  tr:last-child td{border-bottom:none}
+  td.mono,.mono{font-variant-numeric:tabular-nums}
+
+  .pill{display:inline-flex;align-items:center;gap:5px;font-family:var(--sans);font-size:11.5px;font-weight:700;
+    padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .pill.ok{background:var(--ok-bg);color:var(--ok)} .pill.wait{background:var(--wait-bg);color:var(--wait)}
+  .pill.ln{background:var(--panel-2);color:var(--line-green)} .pill.ml{background:var(--panel-2);color:var(--mail-blue)}
+
+  /* checklist */
+  .ck-group{margin:16px 0}
+  .ck-group > .lbl{font-family:var(--sans);font-weight:800;color:var(--ink);font-size:14px;
+    display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .ck-group > .lbl .badge{font-size:11px;font-weight:700;color:#fff;background:var(--kitsune);
+    border-radius:6px;padding:2px 8px}
+  .ck{display:flex;gap:11px;align-items:flex-start;padding:9px 13px;border:1px solid var(--line);
+    border-radius:10px;background:var(--panel);margin:7px 0;cursor:pointer;transition:.15s}
+  .ck:hover{border-color:var(--kitsune-soft)}
+  .ck input{margin-top:3px;width:17px;height:17px;accent-color:var(--kitsune);flex:none;cursor:pointer}
+  .ck .txt{font-size:14px}
+  .ck .txt small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+  .ck.done .txt{text-decoration:line-through;color:var(--muted)}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  .kv{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kv .term{font-weight:800;color:var(--ink);font-size:14.5px;margin-bottom:3px}
+  .kv .def{font-size:13.5px;color:var(--body);font-family:var(--sans)}
+  a.kv{text-decoration:none;transition:.15s}
+  a.kv:hover{border-color:var(--kitsune-soft);box-shadow:var(--shadow);transform:translateY(-1px)}
+  a.kv .go{color:var(--kitsune);font-size:12px;font-weight:700;font-family:var(--sans);margin-top:6px;display:inline-block}
+  .docrow .term{display:flex;align-items:center;gap:7px}
+
+  ul.tight{margin:.4em 0;padding-left:1.25em}
+  ul.tight li{margin:.28em 0}
+  .foot{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);
+    font-family:var(--sans);font-size:12.5px}
+  .print-hint{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:6px}
+  @media (max-width:560px){
+    .tl-item{grid-template-columns:88px 1fr;gap:11px}
+    .wrap{padding:24px 15px 80px}
+    nav.toc{margin-left:-15px;margin-right:-15px;padding-left:15px;padding-right:15px}
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">構築担当者向け ── UTAGE構築指示書</p>
+    <h1 class="lead-title">5日間ステップ配信の構築手順（登録直後〜Day5）</h1>
+    <p class="lead-sub">LINE登録の直後から7通（登録直後〜Day5＋翌日Day6フォロー）を自動配信するステップ配信の設定手順です。募集配信は別ページ。<b>配信の本文（全文）は「5日間 全原稿」ページ</b>を見てください。</p>
+    <div class="callout"><b>本文原稿は一言一句確定済み。</b>変更（誤字修正含む）が必要なときは必ずむぎに確認してください。「〇〇さん」は名前差し込み変数に置き換え。</div>
+  </header>
+  <nav style="margin:18px 0 4px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;"><span style="color:var(--muted);">関連ページ：</span><a href="index.html" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">📋 ブリーフィング</a> <a href="zen-5day.html" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">📨 5日間 全原稿（本文）</a> <a href="tejun-bosyu.html" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">🗓️ 募集配信 手順書</a> <a href="yaru.html" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">📋 やることリスト</a></nav>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">0</span><h2>特典の名前と中身の対応</h2></div>
+    <p class="lead-sub">LP・配信で使う「特典名」と、実ファイル（旧称）の対応表です。<b>LPでは「中種法」の語を使いません</b>（登録後に明かす演出）。</p>
+    <div class="tbl-wrap"><table><thead><tr><th>特典名（配信で使う名称）</th><th>中身（ファイル・旧称）</th><th>届くタイミング</th></tr></thead><tbody><tr><td>パン作りの「困った」全部解決BOOK</td><td>パン作りQ&amp;A（教科書から1冊）</td><td>登録直後</td></tr><tr><td>4,200人に教えてきた、むぎの神レシピ10選</td><td>おすすめレシピ10選（ブログ）</td><td>登録直後</td></tr><tr><td>パン屋さんだけが知っている、"しっとり長持ちパン"の秘密ガイド</td><td>中種法まるわかりガイド(PDF)</td><td>Day1</td></tr><tr><td>「これで合ってる？」が一瞬で消える魔法のチェックシート</td><td>OKサイン早見表(PDF)</td><td>Day2</td></tr><tr><td>あなたの家がパン屋さんになる、動画つき体験レシピ</td><td>体験レシピ＋動画</td><td>Day5</td></tr></tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">1</span><h2>構築の全体像</h2></div>
+    <p class="lead-sub">広告 → LP → LINE登録（＋メール取得）→ ステップ配信（登録直後〜Day5）</p>
+    <div class="tbl-wrap"><table><thead><tr><th>タイミング</th><th>テーマ</th><th>配布物</th><th>受け取り方法</th><th>付与タグ</th></tr></thead><tbody><tr><td>登録直後</td><td>あいさつ＋プレゼント</td><td>①BOOK ②神レシピ10選</td><td>画像カード＋受け取るボタン×2</td><td>登録時_QA_受取／登録時_10選_受取</td></tr><tr><td>Day1</td><td>中種法の紹介</td><td>中種法まるわかりガイド(PDF)</td><td>キーワード「中種」送信で自動送付</td><td>Day1_中種_受取</td></tr><tr><td>Day2</td><td>OKサイン</td><td>OKサイン早見表(PDF)</td><td>画像カード＋受け取るボタン</td><td>Day2_早見表_受取</td></tr><tr><td>Day3</td><td>失敗とリカバリー</td><td>なし</td><td>—</td><td>—</td></tr><tr><td>Day4</td><td>応用の広がり</td><td>なし</td><td>—</td><td>—</td></tr><tr><td>Day5</td><td>体験レシピ</td><td>体験レシピ＋動画</td><td>「レシピを受け取る🍞」ボタン</td><td>Day5_レシピ_受取</td></tr><tr><td>Day6</td><td>5日間のふり返り＋B&amp;T紹介</td><td>なし</td><td>—（ボタン・タグなし）</td><td>—</td></tr><tr><td>Day5以降</td><td>つくれぽ対応</td><td>—</td><td>読者が写真・感想を送信</td><td>Day5_つくれぽ</td></tr></tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">2</span><h2>必須設定チェックリスト</h2></div>
+    <div class="ck-group">
+      <div class="lbl"><span class="badge">2-1</span>メールアドレス取得（絶対に忘れない）</div>
+      <label class="ck"><input type="checkbox"><span class="txt">LP（またはUTAGEフォーム）でメールアドレス欄を必須にする</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">LINE登録と同時にメールアドレスが顧客情報へ保存されることをテスト登録で確認</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">プライバシーポリシーにメール利用の記載があるか確認</span></label>
+    </div>
+    <div class="ck-group">
+      <div class="lbl"><span class="badge">2-2</span>タグ付け（絶対に漏らさない・最重要）</div>
+      <label class="ck"><input type="checkbox"><span class="txt">登録直後：BOOK「受け取る」タップ → 送付＋タグ 登録時_QA_受取</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">登録直後：神レシピ10選「受け取る」タップ → 送付＋タグ 登録時_10選_受取<small>リンク＝pannotoriko.com/no-knead-bread-10/</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">Day1：キーワード「中種」受信 → ガイドPDF自動送付＋タグ Day1_中種_受取</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">Day2：早見表「受け取る」タップ → 早見表PDF送付＋タグ Day2_早見表_受取</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">Day5：「レシピを受け取る🍞」タップ → レシピ＋動画送付＋タグ Day5_レシピ_受取</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">つくれぽ（写真・感想）送信者 → タグ Day5_つくれぽ</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">今後キーワード／ボタンを追加する場合も、反応した人へのタグ付けを必ずセットで設定</span></label>
+    </div>
+    <div class="ck-group">
+      <div class="lbl"><span class="badge">2-3</span>配信チャネル（LINE＋メール）</div>
+      <label class="ck"><input type="checkbox"><span class="txt">配信時刻：登録直後＝即時／Day1〜Day5＝夜21:10（LINE・メール同時刻）</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">LINEステップとメールステップを同一シナリオ・同一タイミングで構築</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">LINE版原稿とメール版原稿を取り違えない（LINE＝短い版／メール＝全文版）</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">各日のカード画像を両チャネルで使用（メールはヘッダー画像）</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">メール差出人名：「パン職人 むぎ」／件名は各原稿に記載のものを使用</span></label>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">3</span><h2>各日の設定サマリー</h2></div>
+    <div class="callout">配信の<b>本文（LINE版／メール版の全文）</b>は分量が多いので、専用の読みやすいページにまとめてあります → <a href="zen-5day.html" target="_blank" rel="noopener" style="color:var(--kitsune);text-decoration:none;font-weight:600;">📨 5日間 全原稿を開く</a>。ここでは設定に必要な要点だけ。</div>
+    <div class="tbl-wrap"><table><thead><tr><th>配信</th><th>カード文言</th><th>メール件名</th><th>構築メモ（配布・タグ）</th></tr></thead><tbody><tr><td>登録直後（即時）</td><td>①「困った」全部解決BOOK（サブ：ふだんは会員さん限定の"教科書"から）／ボタン「BOOKを受け取る🎁」　②「4,200人に教えてきた、むぎの神レシピ10選」／ボタン「10選を受け取る🍞」</td><td>〇〇さん、はじめまして。登録のお礼にプレゼントを2つ🎁</td><td>「受け取る」タップで各特典を送付＋タグ 登録時_QA_受取／登録時_10選_受取（10選リンク＝pannotoriko.com/no-knead-bread-10/）</td></tr><tr><td>Day1（21:10）</td><td>焼き上がりが毎回ちがうのは、あなたのせいじゃない。（サブ：中種法 入門 Day1）</td><td>〇〇さん、焼き上がりが毎回ちがうのは…</td><td>キーワード「中種」送信でガイドPDF自動送付＋タグ Day1_中種_受取</td></tr><tr><td>Day2（21:10）</td><td>冒頭：その中種、合ってるか3秒で分かります。／プレゼント：「これで合ってるのかな…？」を、なくす1枚。（ボタン「早見表を受け取る📌」）</td><td>〇〇さん、その中種「合ってるか」3秒で分かります</td><td>ボタンタップで早見表PDF送付＋タグ Day2_早見表_受取</td></tr><tr><td>Day3（21:10）</td><td>失敗しても、ちゃんと取り返せます。（サブ：中種法 入門 Day3）</td><td>〇〇さん、中種は失敗しても取り返せます</td><td>配布・キーワードなし（配信のみの日）</td></tr><tr><td>Day4（21:10）</td><td>お店の作り方なのに、お家で使える。（サブ：中種法 入門 Day4）</td><td>〇〇さん、中種法の一番すごいところ</td><td>配布・キーワードなし（配信のみの日）</td></tr><tr><td>Day5（21:10）</td><td>あとは、焼くだけ。（サブ：中種法 入門 Day5・体験レシピ）／ボタン「レシピを受け取る🍞」</td><td>〇〇さん、お待たせしました。体験レシピをどうぞ🍞</td><td>ボタンタップで体験レシピ＋動画を送付＋タグ Day5_レシピ_受取／つくれぽ送信者にタグ Day5_つくれぽ</td></tr><tr><td>Day6（21:10）</td><td>5日間、おつかれさまでした。（サブ：むぎより、ひとこと）</td><td>〇〇さん、5日間おつかれさまでした🍞</td><td>配布・ボタン・タグなし。5日間のふり返り＋Bread & Tableの匂わせ（返信を促す設計）</td></tr></tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">4</span><h2>不明点の連絡先</h2></div>
+    <div class="card">本文・設定で判断に迷ったら、必ず<b>むぎ</b>に確認してください（勝手に文章を変えない）。</div>
+  </section>
+
+  <div class="foot" style="text-align:center">関連ページ：<a href="index.html" target="_blank" rel="noopener" style="color:var(--kitsune);text-decoration:none;font-weight:600;">秘書チーム向けブリーフィング</a> ・ <a href="zen-5day.html" target="_blank" rel="noopener" style="color:var(--kitsune);text-decoration:none;font-weight:600;">5日間 全原稿</a> ・ <a href="tejun-bosyu.html" target="_blank" rel="noopener" style="color:var(--kitsune);text-decoration:none;font-weight:600;">募集配信 手順書</a><div class="print-hint">「印刷 → PDFで保存」で配布資料にできます。チェック状態はこの端末に保存されます。</div></div>
+</div>
+<script>
+  (function(){
+    var KEY="bt_tejun5_ck_v1";
+    var boxes=[].slice.call(document.querySelectorAll('.ck input[type=checkbox]'));
+    var saved={};
+    try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+    boxes.forEach(function(b,i){
+      if(saved[i]){b.checked=true;b.closest('.ck').classList.add('done')}
+      b.addEventListener('change',function(){
+        b.closest('.ck').classList.toggle('done',b.checked);
+        saved[i]=b.checked;
+        try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}
+      });
+    });
+  })();
+</script>
