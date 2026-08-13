@@ -1,0 +1,235 @@
+<title>ピクセル設置手順書｜Meta広告</title>
+<style>
+  :root{
+    --bg:#FAF6EC; --panel:#FFFDF6; --panel-2:#F5EEDD; --ink:#46331E; --body:#574326;
+    --muted:#8C7B60; --line:#E7DBC2; --line-2:#EAD9B6;
+    --kitsune:#D9831F; --kitsune-soft:#EFA23E; --kitsune-bg:#FBEFD9;
+    --ok:#5E8C5A; --ok-bg:#E7F0E3; --wait:#C0842A; --wait-bg:#FBEECF;
+    --line-green:#06C755; --mail-blue:#3B7BD1;
+    --shadow:0 1px 2px rgba(70,51,30,.06), 0 8px 30px rgba(70,51,30,.06);
+    --radius:14px;
+    --serif:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#221A12; --panel:#2C2117; --panel-2:#33271A; --ink:#F3E7D2; --body:#E4D6BF;
+      --muted:#B39E7F; --line:#3D2F20; --line-2:#4A3826;
+      --kitsune:#EFA23E; --kitsune-soft:#E0912F; --kitsune-bg:#3A2A17;
+      --ok:#8FC489; --ok-bg:#26311F; --wait:#E7B860; --wait-bg:#382a13;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#FAF6EC; --panel:#FFFDF6; --panel-2:#F5EEDD; --ink:#46331E; --body:#574326;
+    --muted:#8C7B60; --line:#E7DBC2; --line-2:#EAD9B6; --kitsune:#D9831F; --kitsune-soft:#EFA23E;
+    --kitsune-bg:#FBEFD9; --ok:#5E8C5A; --ok-bg:#E7F0E3; --wait:#C0842A; --wait-bg:#FBEECF;
+    --shadow:0 1px 2px rgba(70,51,30,.06), 0 8px 30px rgba(70,51,30,.06);
+  }
+  :root[data-theme="dark"]{
+    --bg:#221A12; --panel:#2C2117; --panel-2:#33271A; --ink:#F3E7D2; --body:#E4D6BF;
+    --muted:#B39E7F; --line:#3D2F20; --line-2:#4A3826; --kitsune:#EFA23E; --kitsune-soft:#E0912F;
+    --kitsune-bg:#3A2A17; --ok:#8FC489; --ok-bg:#26311F; --wait:#E7B860; --wait-bg:#382a13;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.28);
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--body);font-family:var(--sans);line-height:1.75;
+    font-size:16px;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:900px;margin:0 auto;padding:32px 22px 96px}
+  h1,h2,h3{color:var(--ink);text-wrap:balance;font-family:var(--serif);font-weight:600;letter-spacing:.01em}
+  a{color:var(--kitsune);text-underline-offset:3px}
+  p{margin:.5em 0}
+
+  .eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--kitsune);font-weight:700;margin:0 0 10px}
+  .lead-title{font-size:clamp(26px,4.4vw,38px);line-height:1.28;margin:0 0 14px}
+  .lead-sub{font-family:var(--sans);color:var(--muted);font-size:15px;margin:0}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{font-family:var(--sans);font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;
+    background:var(--panel-2);color:var(--ink);border:1px solid var(--line)}
+  .chip.k{background:var(--kitsune-bg);color:var(--kitsune);border-color:transparent}
+
+  section{margin-top:40px;scroll-margin-top:64px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+  .sec-num{font-family:var(--serif);font-size:14px;color:var(--kitsune);font-weight:700;
+    border:1.5px solid var(--kitsune-soft);border-radius:8px;padding:2px 9px;flex:none;line-height:1.4}
+  .sec-head h2{font-size:clamp(20px,3vw,25px);margin:0}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .card.tint{background:var(--kitsune-bg);border-color:transparent}
+  .card h3{font-size:17px;margin:0 0 8px}
+
+  .callout{border-left:3px solid var(--kitsune);background:var(--panel-2);
+    border-radius:0 10px 10px 0;padding:13px 16px;margin:14px 0;font-size:14.5px}
+  .callout b{color:var(--ink)}
+  .callout.danger{border-left-color:#C0392B;background:var(--wait-bg)}
+
+  .funnel{display:flex;flex-direction:column;gap:0;margin:8px 0}
+  .fstep{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 16px;
+    display:flex;gap:13px;align-items:center;box-shadow:var(--shadow);position:relative}
+  .fstep .n{font-family:var(--serif);font-weight:700;color:var(--kitsune);font-size:15px;flex:none;
+    width:26px;height:26px;border-radius:50%;background:var(--kitsune-bg);display:grid;place-items:center}
+  .fstep .t{font-weight:700;color:var(--ink);font-size:15px}
+  .fstep .d{color:var(--muted);font-size:13px;font-family:var(--sans)}
+  .fconn{width:2px;height:16px;background:var(--line-2);margin:3px 0 3px 34px}
+  .fstep.hot{border-color:var(--kitsune-soft);background:var(--kitsune-bg)}
+
+  /* code block */
+  .codebox{position:relative;margin:14px 0}
+  .codebox pre{background:#2C2117;color:#F3E7D2;border-radius:12px;padding:18px 16px;overflow-x:auto;
+    font-size:12.5px;line-height:1.6;margin:0;border:1px solid var(--line)}
+  @media (prefers-color-scheme: dark){ .codebox pre{background:#1A130C;border-color:#4A3826} }
+  .codebox code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .copybtn{position:absolute;top:10px;right:10px;font-family:var(--sans);font-size:12.5px;font-weight:700;
+    color:#fff;background:var(--kitsune);border:none;border-radius:8px;padding:7px 14px;cursor:pointer}
+  .copybtn:hover{background:var(--kitsune-soft)}
+  .copybtn.copied{background:var(--ok)}
+
+  .ck-group{margin:16px 0}
+  .ck-group > .lbl{font-family:var(--sans);font-weight:800;color:var(--ink);font-size:14px;
+    display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .ck-group > .lbl .badge{font-size:11px;font-weight:700;color:#fff;background:var(--kitsune);
+    border-radius:6px;padding:2px 8px}
+  .ck{display:flex;gap:11px;align-items:flex-start;padding:9px 13px;border:1px solid var(--line);
+    border-radius:10px;background:var(--panel);margin:7px 0;cursor:pointer;transition:.15s}
+  .ck:hover{border-color:var(--kitsune-soft)}
+  .ck input{margin-top:3px;width:17px;height:17px;accent-color:var(--kitsune);flex:none;cursor:pointer}
+  .ck .txt{font-size:14px}
+  .ck .txt small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+  .ck.done .txt{text-decoration:line-through;color:var(--muted)}
+
+  ul.tight{margin:.4em 0;padding-left:1.25em}
+  ul.tight li{margin:.28em 0}
+  .foot{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);
+    font-family:var(--sans);font-size:12.5px}
+  .print-hint{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:6px}
+  @media (max-width:560px){
+    .wrap{padding:24px 15px 80px}
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">構築担当者向け ── Meta広告 計測タグ</p>
+    <h1 class="lead-title">ピクセル設置手順書（UTAGEにコピペ2箇所）</h1>
+    <p class="lead-sub">Instagram広告の成果（LINE登録の数）を測るための「計測タグ」を、広告用LPと登録完了ページに貼る作業です。<b>コードのコピペだけで、プログラミングの知識は不要</b>。所要15分。</p>
+    <div class="callout"><b>このタグが無いと、広告費を使っても「何件登録されたか」が測れません。</b>広告の配信開始前に必ず設置します。コードは下の「コピー」ボタンでそのまま使ってください（書き換え禁止）。</div>
+    <div class="meta-row">
+      <span class="chip k">対象＝広告用オプトインLPのファネル</span>
+      <span class="chip">ピクセルID: 1733342957709139</span>
+      <span class="chip">作業＝コピペ2箇所＋保存</span>
+    </div>
+  </header>
+  <nav style="margin:18px 0 4px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;"><span style="color:var(--muted);">関連ページ：</span><a href="index.html" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">📋 ブリーフィング</a> <a href="yaru.html" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">📋 やることリスト</a> <a href="tejun-5day.html" style="color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--kitsune);font-weight:600;">🛠 UTAGE手順書（5日間）</a></nav>
+
+  <section id="s0">
+    <div class="sec-head"><span class="sec-num">0</span><h2>何をするのか（1分で理解）</h2></div>
+    <p>広告からの流れの中で、「LPが見られた」「登録が完了した」の2つをMetaに知らせる小さなコードを貼ります。</p>
+    <div class="funnel">
+      <div class="fstep"><span class="n">1</span><div><div class="t">Instagram広告</div><div class="d">読者が広告をタップ</div></div></div>
+      <div class="fconn"></div>
+      <div class="fstep hot"><span class="n">2</span><div><div class="t">オプトインLP</div><div class="d">ここに<b>コードA</b>を貼る →「LPが見られた」が測れる</div></div></div>
+      <div class="fconn"></div>
+      <div class="fstep hot"><span class="n">3</span><div><div class="t">登録完了（サンクス）ページ</div><div class="d">ここに<b>コードA＋コードB</b>を貼る →「登録1件」が測れる</div></div></div>
+    </div>
+  </section>
+
+  <section id="s1">
+    <div class="sec-head"><span class="sec-num">1</span><h2>コードA（ベースコード）── LPと完了ページの両方に貼る</h2></div>
+    <div class="codebox">
+      <button class="copybtn" data-target="codeA">コピー</button>
+      <pre><code id="codeA">&lt;!-- Meta Pixel Code --&gt;
+&lt;script&gt;
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1733342957709139');
+fbq('track', 'PageView');
+&lt;/script&gt;
+&lt;noscript&gt;&lt;img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1733342957709139&amp;ev=PageView&amp;noscript=1"
+/&gt;&lt;/noscript&gt;
+&lt;!-- End Meta Pixel Code --&gt;</code></pre>
+    </div>
+  </section>
+
+  <section id="s2">
+    <div class="sec-head"><span class="sec-num">2</span><h2>コードB（登録イベント）── 完了ページ「だけ」に追加で貼る</h2></div>
+    <p>コードAの<b>下</b>に、続けて貼ります。</p>
+    <div class="codebox">
+      <button class="copybtn" data-target="codeB">コピー</button>
+      <pre><code id="codeB">&lt;script&gt;
+fbq('track', 'Lead');
+&lt;/script&gt;</code></pre>
+    </div>
+    <div class="callout danger"><b>⚠️ 絶対ルール：コードBをLPに貼らない。</b>LPに貼ると「LPを見ただけの人」が全員登録扱いになり、広告の数字が壊れます。コードBは<b>登録完了（サンクス）ページのみ</b>です。</div>
+  </section>
+
+  <section id="s3">
+    <div class="sec-head"><span class="sec-num">3</span><h2>貼り付け手順（チェックしながら進む）</h2></div>
+    <div class="ck-group">
+      <div class="lbl"><span class="badge">作業</span>UTAGEでの貼り付け</div>
+      <label class="ck"><input type="checkbox"><span class="txt">UTAGE管理画面で、広告用オプトインLPのファネルを開く</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt"><b>LPページ</b>の編集画面で「計測タグ」「headタグ」「トラッキングコード」などの欄を探し、<b>コードAだけ</b>を貼って保存<small>欄の名前はUTAGEの画面表示に従ってください。ページ個別の欄が無ければ、ファネル共通設定のタグ欄でもOK</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="txt"><b>登録完了（サンクス）ページ</b>の同じ欄に、<b>コードA→コードBの順</b>で両方貼って保存<small>共通欄にコードAを入れた場合は、完了ページにはコードBだけ追加</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">両ページを実際に開いて、表示が崩れていないことを確認<small>タグは見えないコードなので、見た目は何も変わらないのが正常です</small></span></label>
+    </div>
+  </section>
+
+  <section id="s4">
+    <div class="sec-head"><span class="sec-num">4</span><h2>動作確認（テスト登録）</h2></div>
+    <div class="ck-group">
+      <div class="lbl"><span class="badge">確認</span>設置できたかのテスト</div>
+      <label class="ck"><input type="checkbox"><span class="txt">スマホかシークレットウィンドウでLPを開き、テストで1回登録してみる</span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">むぎ（またはAI秘書）に「テスト登録した」と連絡<small>Meta側の管理画面で「PageView」と「Lead」が計上されたかはむぎ側で確認します。反映まで数分〜20分かかることがあります</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="txt">テストで使った登録者（自分）を、UTAGE側で配信対象から外す</span></label>
+    </div>
+  </section>
+
+  <section id="s5">
+    <div class="sec-head"><span class="sec-num">5</span><h2>不明点の連絡先</h2></div>
+    <div class="card">貼る場所が分からない・エラーが出た等、判断に迷ったら手を止めて<b>むぎ</b>に確認してください。<b>コードの中身は絶対に書き換えない</b>でください（1文字違うと計測されません）。</div>
+  </section>
+
+  <div class="foot" style="text-align:center">関連ページ：<a href="index.html" style="color:var(--kitsune);text-decoration:none;font-weight:600;">秘書チーム向けブリーフィング</a> ・ <a href="yaru.html" style="color:var(--kitsune);text-decoration:none;font-weight:600;">やることリスト</a> ・ <a href="tejun-5day.html" style="color:var(--kitsune);text-decoration:none;font-weight:600;">UTAGE手順書（5日間）</a><div class="print-hint">「印刷 → PDFで保存」で配布資料にできます。チェック状態はこの端末に保存されます。</div></div>
+</div>
+<script>
+  (function(){
+    var KEY="bt_pixel_ck_v1";
+    var boxes=[].slice.call(document.querySelectorAll('.ck input[type=checkbox]'));
+    var saved={};
+    try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+    boxes.forEach(function(b,i){
+      if(saved[i]){b.checked=true;b.closest('.ck').classList.add('done')}
+      b.addEventListener('change',function(){
+        b.closest('.ck').classList.toggle('done',b.checked);
+        saved[i]=b.checked;
+        try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}
+      });
+    });
+    [].slice.call(document.querySelectorAll('.copybtn')).forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var code=document.getElementById(btn.getAttribute('data-target'));
+        var text=code.textContent;
+        function done(){btn.textContent="✓ コピーしました";btn.classList.add('copied');
+          setTimeout(function(){btn.textContent="コピー";btn.classList.remove('copied')},2200)}
+        if(navigator.clipboard&&navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(done,fallback);
+        }else{fallback()}
+        function fallback(){
+          var ta=document.createElement('textarea');ta.value=text;
+          document.body.appendChild(ta);ta.select();
+          try{document.execCommand('copy');done()}catch(e){alert('コピーできませんでした。コードを手動で選択してコピーしてください。')}
+          document.body.removeChild(ta);
+        }
+      });
+    });
+  })();
+</script>
